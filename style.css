@@ -1,0 +1,190 @@
+@font-face {
+    font-family: nb;
+    src: url(./NBInternationalProBoo.ttf)
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+table {
+  border-collapse: separate;
+  margin: 20px auto;
+}
+
+table,
+th,
+td {
+  border: 5px solid rgba(0, 0, 0, 0);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.5s;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+#output {
+  margin-top: 20px;
+  font-weight: bold;
+}
+#explain {
+  margin-top: 20px;
+  font-weight: bold;
+  
+}
+
+.speed-control {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  display: inline-block;
+}
+
+.speed-dropdown {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  padding: 12px 16px;
+  z-index: 1;
+  display: none;
+  transform: translateY(-100%);
+  text-align: left;
+}
+
+.speed-dropdown.show {
+  display: block;
+}
+
+.speed-dropdown-item {
+  cursor: pointer;
+}
+
+.speed-dropdown-item:hover {
+  background-color: #ddd;
+}
+
+#loader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  gap: 10px;
+}
+
+#loader h3{
+    font-size: 2vw;
+}
+
+h1, label, input, button{
+    font-family: nb;
+}
+
+h1{
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+}
+label, input{
+    padding: 10px;
+    font-weight: semi-bold;
+}
+#buttonsDiv{
+    display : flex;
+    justify-content: center;
+    margin:5px ;
+    /* background-color: #000; */
+    color: #fff;
+    padding: 13px;
+    border-radius: 25px;
+}
+
+
+#btnPause, #btnPlay, #btnReset, #btnSkip{
+  margin:5px ;
+  color: #000   ;
+  padding: 13px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+#btnPause:hover, #btnPlay:hover, #btnReset:hover, #btnSkip:hover{
+  margin:5px ;
+  
+  padding: 13px;
+  border-radius: 25px;
+  background-color: #45a049;
+  border-color: #45a049;
+  color: #fff;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+#simBtn{
+  display : flex;
+  justify-content: center;
+}
+
+#btnDynamic, #btnGreedy{
+  display : flex;
+  justify-content: center;
+  margin:5px ;
+  background-color: white;
+  color: #000;
+  padding: 13px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* transition: all 0.3s ease; */
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#btnDynamic:hover , #btnGreedy:hover{
+  background-color: #45a049;
+  border-color: #45a049;
+  color: #fff;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+} 
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+input{
+  padding: 5px;
+  font-weight: semi-bold;
+  border-radius: 5px;
+}
+
+
+#btnSpeed{
+  border-radius: 5px;
+  padding: 5px;
+}
+/* 
+#btnSkip,#btnPause,#btnReset,#btnplay{
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+} */
