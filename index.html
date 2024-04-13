@@ -24,7 +24,7 @@
     <input type="number" id="amount" placeholder="Eg: 9" required />
     <br />
     <br />
-    <br />
+    
 
     <label for="coins">Enter coin denominations (space separated):</label>
     <input type="text" id="coins" placeholder="Eg: 1 4 5 7" required />
@@ -38,7 +38,10 @@
     
     <div id="table-container"></div>
     <div id="output"></div>
-    <div id="explain"></div>
+    <div id="exp">
+    <span id="explain"></span>
+    <span id="valueDisplay"></span>
+    </div>
     <div id="buttonsDiv">
       <br />
       <span id="btnReset" title="Reset" class="material-symbols-outlined" style="display: none">
@@ -61,8 +64,9 @@
         onclick="toggleDropdown()"
         class="speed-control-btn"
         id="btnSpeed"
+        title="Speed"
       >
-        Speed: 1x
+        1x
       </button>
       <div id="speedDropdown" class="speed-dropdown">
         <div class="speed-dropdown-item" onclick="setSpeed(0.25)">0.25x</div>

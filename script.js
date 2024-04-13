@@ -197,6 +197,10 @@ function displaySimulationDynamic(result, table, i, j, coinsUsed, step) {
   if (iDynamic == 1 && jDynamic == 1)
     explainDiv.innerHTML = "Calculate Minimum No. of coins required.";
 
+  const valueDiv = document.getElementById("valueDisplay");
+  if (iDynamic == 1 && jDynamic == 1)
+    valueDiv.innerHTML = "";
+
   const tableContainer = document.getElementById("table-container");
   if (iDynamic == 1 && jDynamic == 1) tableContainer.innerHTML = "";
 
@@ -211,6 +215,7 @@ function displaySimulationDynamic(result, table, i, j, coinsUsed, step) {
       dynamicRunning = false;
       wasPaused = false;
       displayBacktracking(coinsUsed, table, result, step, iBacktrack, jBacktrack);
+      valueDiv.innerHTML = "";
       return;
     }
     displayTableSim(tableContainer, table, i, j, step);
@@ -229,20 +234,24 @@ function displaySimulationDynamic(result, table, i, j, coinsUsed, step) {
       if (i == 1) {
         outputDiv.innerHTML = `Calculating number of coins for sum ${j} using denomination '${table[i][0]}'.`;
         explainDiv.innerHTML = `No. of denomination '${table[i][0]}' coins required for Sum ${j}`;
+        valueDiv.innerHTML = "";
       }
       //Copying from above
       else if (j < table[i][0]) {
         outputDiv.innerHTML = `Calculating number of coins for sum ${j}, denomination '${table[i][0]}' can be used with above denomination(s)`;
         explainDiv.innerHTML = `Denomination greater than sum, take above value`;
+        valueDiv.innerHTML = "";
       }
       //sum equal to coin
       else if (j == table[i][0]) {
         outputDiv.innerHTML = `Calculating number of coins for sum ${j}, denomination '${table[i][0]}' can be used with above denomination(s)`;
         explainDiv.innerHTML = `Only 1 coin required.`;
+        valueDiv.innerHTML = "";
       } 
       else {
         outputDiv.innerHTML = `Calculating number of coins for sum ${j}, denomination '${table[i][0]}' can be used with above denomination(s)`;
-        explainDiv.innerHTML = `Min(dp[row-1], dp[sum - coin] + 1 ) = ${table[i][j]}`;
+        explainDiv.innerHTML = `Min(dp[row-1], dp[sum - coin] + 1 ) = `;
+        valueDiv.innerHTML = `${table[i][j]}`;
       }
     }
     j++; // Move to the next column
@@ -276,13 +285,14 @@ function displayTableSim(container, data, highlightRow, highlightColumn, step) {
       if (highlightRow == -1 && highlightColumn == -1)
         cellElement.style.borderColor = "rgba(0, 0, 0, 0)";
       else if (j === highlightRow && k === highlightColumn)
-        cellElement.style.borderColor = "#f20000";
+        {cellElement.style.borderColor = "#ffffff";
+        cellElement.style.color = "#45a049";}
       //one coin required
       else if (j === highlightRow && k === highlightColumn && data[j][k] == 1)
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
       //copying from above
       else if (j === highlightRow - 1 && k === highlightColumn && data[highlightRow][0] > data[0][k]) {
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
         setTimeout(() => {
           cellElement.style.borderColor = "rgba(0, 0, 0, 0)";
         }, step);
@@ -290,14 +300,14 @@ function displayTableSim(container, data, highlightRow, highlightColumn, step) {
       //comparing two values
       //upper value
       else if (j === highlightRow - 1 && k === highlightColumn && data[highlightRow][k] != 1) {
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
         setTimeout(() => {
           cellElement.style.borderColor = "rgba(0, 0, 0, 0)";
         }, step);
       }
       //left value
       else if (j === highlightRow && k == data[0][highlightColumn] - data[j][0] && j != 1 && k != 0) {
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
         setTimeout(() => {
           cellElement.style.borderColor = "rgba(0, 0, 0, 0)";
         }, step);
@@ -366,12 +376,12 @@ function displayTableBack(coinIndex, container, data, highlightRow, highlightCol
       //highlight border
       //on that cell
       if (highlightColumn === k && k === 0 && coinIndex.includes(j))
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
       else if (j === highlightRow && k === highlightColumn)
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
       //above cell
       else if (j === highlightRow - 1 && k === highlightColumn && k != 0)
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
       //this coin was used
       else if (
         j === highlightRow &&
@@ -379,7 +389,7 @@ function displayTableBack(coinIndex, container, data, highlightRow, highlightCol
         data[highlightRow][highlightColumn] !=
           data[highlightRow - 1][highlightColumn]
       )
-        cellElement.style.borderColor = "#f20000";
+        cellElement.style.borderColor = "#ffffff";
       // console.log(highlightColumn);
       //values display
       const value = data[j][k] === Infinity ? "-" : data[j][k];
@@ -601,9 +611,9 @@ function displayRow(tableContainer, coinsSorted, i, table, amount, coinSet) {
   for (let j = 0; j < coinsSorted.length; j++) {
     const cellElement = row.insertCell();
     cellElement.textContent = coinsSorted[j];
-    if (i === j) cellElement.style.borderColor = "#f20000";
+    if (i === j) cellElement.style.borderColor = "#ffffff";
     if (amount === 0 && coinSet.includes(coinsSorted[j]))
-      cellElement.style.borderColor = "#f20000";
+      cellElement.style.borderColor = "#ffffff";
   }
   tableContainer.innerHTML = "";
   tableContainer.appendChild(table);
@@ -675,7 +685,7 @@ function toggleDropdown() {
 
 function setSpeed(speed) {
   if (greedyRunning || dynamicRunning || backtrackRunning) pause();
-  document.querySelector(".speed-control-btn").innerText = `Speed: ${speed}x`;
+  document.querySelector(".speed-control-btn").innerText = `${speed}x`;
   var dropdown = document.getElementById("speedDropdown");
   dropdown.classList.remove("show");
   if(dynamicRunning || backtrackRunning) step = 1.75*(0-speed) + 3.75;
