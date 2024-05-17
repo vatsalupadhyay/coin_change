@@ -45,13 +45,13 @@ th {
 }
 
 #valueDisplay{
-  color: #45a049;
+  color: #51e358;
 }
 
 .speed-control {
   position: fixed;
-  bottom: 20px;
-  right: 40px;
+  bottom: 70px;
+  right: 170px;
   display: inline-block;
 }
 
@@ -206,3 +206,13 @@ input {
 #btnSpeed:hover {
   background-color: #357a38; /* Darker shade on hover */
 }
+
+#table-container{
+  /* max-width: 70%; */
+  overflow-x: scroll;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+

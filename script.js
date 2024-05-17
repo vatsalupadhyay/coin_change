@@ -286,7 +286,7 @@ function displayTableSim(container, data, highlightRow, highlightColumn, step) {
         cellElement.style.borderColor = "rgba(0, 0, 0, 0)";
       else if (j === highlightRow && k === highlightColumn)
         {cellElement.style.borderColor = "#ffffff";
-        cellElement.style.color = "#45a049";}
+        cellElement.style.color = "#51e358";}
       //one coin required
       else if (j === highlightRow && k === highlightColumn && data[j][k] == 1)
         cellElement.style.borderColor = "#ffffff";
